@@ -1,12 +1,12 @@
 E-commerce Project
 
-E-commerce es una aplicaciÛn de comercio electrÛnico desarrollada con .NET Core 8. Este proyecto est· actualmente en desarrollo y busca servir como base para una plataforma de venta en lÌnea moderna y escalable. Cada avance y actualizaciÛn se sube a GitHub para mantener un historial de cambios y facilitar la colaboraciÛn.
+E-commerce es una aplicaci√≥n de comercio electr√≥nico desarrollada con .NET Core 8. Este proyecto est√° actualmente en desarrollo y busca servir como base para una plataforma de venta en l√≠nea moderna y escalable. Cada avance y actualizaci√≥n se sube a GitHub para mantener un historial de cambios y facilitar la colaboraci√≥n.
 
 Estructura del Proyecto
 
-El proyecto est· dividido en varios mÛdulos para mantener un diseÒo limpio y modular:
+El proyecto est√° dividido en varios m√≥dulos para mantener un dise√±o limpio y modular:
 
-ecommerce.WebApp: AplicaciÛn principal basada en MVC, que maneja la interfaz de usuario y la lÛgica de presentaciÛn.
+ecommerce.WebApp: Aplicaci√≥n principal basada en MVC, que maneja la interfaz de usuario y la l√≥gica de presentaci√≥n.
 
 ecommerce.DataAccess: Proyecto dedicado a la capa de acceso a datos, separado para mantener independencia y facilitar pruebas.
 
@@ -14,9 +14,9 @@ ecommerce.Models: Contiene todas las entidades y modelos de datos del proyecto.
 
 ecommerce.Utility: Funcionalidades y utilidades compartidas que pueden ser usadas en diferentes partes del proyecto.
 
-ecommerceWebRazor_Temp: Proyecto experimental para aprender Razor Pages, CRUD y conexiÛn a base de datos con EF Core. Sirve como laboratorio temporal para probar funcionalidades antes de integrarlas en la aplicaciÛn principal.
+ecommerceWebRazor_Temp: Proyecto experimental para aprender Razor Pages, CRUD y conexi√≥n a base de datos con EF Core. Sirve como laboratorio temporal para probar funcionalidades antes de integrarlas en la aplicaci√≥n principal.
 
-TecnologÌas y Herramientas
+Tecnolog√≠as y Herramientas
 
 .NET Core 8
 
@@ -31,30 +31,30 @@ Git & GitHub para control de versiones
 
 Estado del Proyecto
 
-Actualmente el proyecto est· en desarrollo. Se van agregando nuevas funcionalidades de forma incremental y cada cambio se sube al repositorio para que otros puedan seguir el progreso.
+Actualmente el proyecto est√° en desarrollo. Se van agregando nuevas funcionalidades de forma incremental y cada cambio se sube al repositorio para que otros puedan seguir el progreso.
 
-InstalaciÛn
+Instalaci√≥n
 
 Para ejecutar el proyecto localmente:
 
 Clonar el repositorio:
 
-git clone https://github.com/tu-usuario/ecommerce.git
+git clone https://github.com/saulbf96/ecommerce.git
 
 
-Abrir la soluciÛn en Visual Studio 2019 o superior.
+Abrir la soluci√≥n en Visual Studio 2019 o superior.
 
 Restaurar los paquetes NuGet.
 
-Configurar la cadena de conexiÛn en appsettings.json.
+Configurar la cadena de conexi√≥n en appsettings.json.
 
 Ejecutar ecommerce.WebApp como proyecto de inicio.
 
-Para probar ecommerceWebRazor_Temp, selecciona ese proyecto como inicio y configura su propia cadena de conexiÛn.
+Para probar ecommerceWebRazor_Temp, selecciona ese proyecto como inicio y configura su propia cadena de conexi√≥n.
 
 Contribuciones
 
-Este proyecto est· abierto a contribuciones y sugerencias. Si deseas colaborar:
+Este proyecto est√° abierto a contribuciones y sugerencias. Si deseas colaborar:
 
 Haz un fork del repositorio.
 
@@ -62,8 +62,8 @@ Crea una rama para tu feature (git checkout -b feature/nueva-funcionalidad).
 
 Haz commit de tus cambios (git commit -m "Agrega nueva funcionalidad").
 
-EnvÌa un pull request al repositorio principal.
+Env√≠a un pull request al repositorio principal.
 
 Contacto
 
-Si quieres contactarme sobre el proyecto, puedes hacerlo a travÈs de mi perfil de GitHub.
+Si quieres contactarme sobre el proyecto, puedes hacerlo a trav√©s de mi perfil de GitHub.
