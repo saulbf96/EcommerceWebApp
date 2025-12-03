@@ -1,4 +1,6 @@
 
+using Ecommerce.DataAccess.Repository;
+using Ecommerce.DataAccess.Repository.IRepository;
 using EcommerceWebApp.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaulConnection")));//indicamos que usaremos sql server del nuget 
 
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

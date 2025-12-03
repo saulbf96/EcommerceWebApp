@@ -59,4 +59,30 @@
     </div>
 </div>
 
+@section Scripts {
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    @if (TempData["success"] != null)
+    {
+        <script>
+            toastr.success('@TempData["success"]');
+        </script>
+
+        @* Esto borra mensaje no este atorado *@
+        TempData.Remove("success");
+    }
+
+    @if (TempData["error"] != null)
+    {
+        <script>
+            toastr.error('@TempData["error"]');
+        </script>
+
+        TempData.Remove("error");
+    }
+}
+
+
 
