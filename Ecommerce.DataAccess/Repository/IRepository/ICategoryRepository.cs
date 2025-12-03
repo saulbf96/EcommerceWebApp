@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.DataAccess.Repository.IRepository
 {
-    public  interface ICategoryRepository : IRepository<Category>
+    public interface ICategoryRepository : IRepository<Category>
     {
 
         void Update(Category category);
-       // void Save(); lo borramos 
+        // void Save(); lo borramos 
+    }
 }

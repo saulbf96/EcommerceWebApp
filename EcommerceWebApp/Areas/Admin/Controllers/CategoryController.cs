@@ -6,22 +6,32 @@ using EcommerceWebApp.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace EcommerceWebApp.Controllers
+namespace EcommerceWebApp.Areas.Admin.Controllers
 {
 
-
+    [Area("Admin")]//este atributo se coloca para indicar que este controlador pertenece al area admin 
     public class CategoryController : Controller
     {
         //Inyección de dependencias: se recibe el contexto de base de datos
 
         //declaramos una variable privada dentro del controlador  llamada _bd
         //rendoy significa que solo se puede asignar una vez 
-        private readonly ICategoryRepository _categoryRepo;
-        public CategoryController(ICategoryRepository db) //este es nuestro contructor del controlador 
+        //private readonly ICategoryRepository _categoryRepo;
+        //public CategoryController(ICategoryRepository db) //este es nuestro contructor del controlador 
+        //{
+        //    //asignamos db a nuestro parametros _db para poderlo usar en todos los metodos 
+        //    _categoryRepo = db;
+        //}
+
+
+        //aqui implementamos unitofwork  se comenta lo de arriba para que quede de ejeplo 
+        private readonly IUnitOfWork _unitOfWork;
+        //constructor 
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            //asignamos db a nuestro parametros _db para poderlo usar en todos los metodos 
-            _categoryRepo = db;
+            _unitOfWork = unitOfWork;
         }
+        
         public IActionResult Index()
         {
             //TempData.Remove("success");
@@ -29,7 +39,7 @@ namespace EcommerceWebApp.Controllers
             //esta es la respuesta del controlador puede ser una vista, un redireccionamiento, un JSON, etc.
             //index es la pagina principal de este controlador 
             //aqui pasamos los datos del metodo antes de que lleguen a la vista 
-            List<Category> objCategoryList = _categoryRepo.GetAll().ToList();
+            List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);//devuelve la vista correspondiente 
         }
 
@@ -79,8 +89,8 @@ namespace EcommerceWebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                _categoryRepo.Add(category);
-                _categoryRepo.Save();
+                _unitOfWork.Category.Add(category);
+                _unitOfWork.Save();
                 TempData["success"] = "Categoria agregada exitosamente";
                 //// Guardar con la primera letra en mayúscula
                 //if (!string.IsNullOrWhiteSpace(category.Name))
@@ -123,7 +133,7 @@ namespace EcommerceWebApp.Controllers
                 //esto evita errores si alguien accede en /Category/Edit/ con un id invalido 
                 return NotFound();
             }
-            Category? categoryFromDb = _categoryRepo.Get(u=>u.Id == id);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u=>u.Id == id);
             //busca categoria por su clave primaria 
             //Category? categoryFromBd1 = _db.Categories.FirstOrDefault(x => x.Id == id);//busca categoria que cumpla con la condicion o devuelve null
             //Category? categoryFromBd2 = _db.Categories.Where(u => u.Id == id).FirstOrDefault();//filtra categoria por id == id y toma la primera  o null
@@ -223,8 +233,8 @@ namespace EcommerceWebApp.Controllers
 
             if(ModelState.IsValid)
             {
-                _categoryRepo.Update(category);
-                _categoryRepo.Save();
+                _unitOfWork.Category.Update(category);
+                _unitOfWork.Save();
                 TempData["success"] = "Categoria actualizada exitosamente";
                 return RedirectToAction("Index");
             }
@@ -244,7 +254,7 @@ namespace EcommerceWebApp.Controllers
                 //esto evita errores si alguien accede en /Category/Edit/ con un id invalido 
                 return NotFound();
             }
-            Category? categoryFromDb = _categoryRepo.Get(u => u.Id== id);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id== id);
             //busca categoria por su clave primaria 
             //Category? categoryFromBd1 = _db.Categories.FirstOrDefault(x => x.Id == id);//busca categoria que cumpla con la condicion o devuelve null
             //Category? categoryFromBd2 = _db.Categories.Where(u => u.Id == id).FirstOrDefault();//filtra categoria por id == id y toma la primera  o null
@@ -266,7 +276,7 @@ namespace EcommerceWebApp.Controllers
         //[ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            Category? category = _categoryRepo.Get(u => u.Id== id);
+            Category? category = _unitOfWork.Category.Get(u => u.Id== id);
             if (category == null)
             {
                 // Si no existe, lo mandamos al Index con mensaje de error opcional
@@ -276,8 +286,8 @@ namespace EcommerceWebApp.Controllers
 
            // _db.Categories.Remove(category);
            //_db.SaveChanges();
-           _categoryRepo.Remove(category);
-            _categoryRepo.Save();
+           _unitOfWork.Category.Remove(category);
+            _unitOfWork.Save();
 
             TempData["success"] = "La categoría se ha eliminado correctamente";
             //ViewBag.SuccessMessage = "Categoría eliminada correctamente. Redirigiendo a la lista...";
